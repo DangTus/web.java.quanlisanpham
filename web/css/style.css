@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+    font: normal normal 20px sans-serif;
+}
+body {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+#myTable {
+    margin-top: 100px;
+    border: 1px solid #000;
+    width: 60%;
+    border-collapse: collapse;
+}
+
+.myTd {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 20px;
+}
+
+.myTd > * {
+    margin: 10px 0;
+    width: 100%;
+}
+
+.myTd > p {
+    font-weight: bold;
+    color: red;
+}
+
+.myTd > a {
+    color: #000;
+    transition: 0.1s all ease;
+}
+
+.myTd > a:hover {
+    font-size: 25px;
+    transition: 0.1s all ease;
+}
+
+#spTable, #spTable th, #spTable td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    padding: 10px 0;
+}
+
+#spTable {
+    text-align: center;
+}
+
+#spTable th {
+    background-color: orange;
+}
