@@ -15,10 +15,19 @@
         switch (act) {
             case "view":
     %>
-    <%@ include file = "view.jsp"%>
-    <%                break;
-            default:
-                throw new AssertionError();
+                <%@ include file = "view.jsp"%>
+    <%
+            break;
+            case "add":
+    %>
+                <%@ include file = "add.jsp"%>
+    <%
+            break;
+            case "delete":
+    %>
+                <%@ include file = "delete.jsp"%>
+    <%
+            break;
         }
     %>    
 </html>

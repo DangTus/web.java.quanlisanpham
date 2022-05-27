@@ -8,35 +8,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.TheLoai;
+import model.Category;
 
-public class TheLoaiDao {
+public class CategoryDao {
 
-    public List<TheLoai> getAllTheLoai() {
-        List<TheLoai> theLoais = new ArrayList<TheLoai>();
+    public List<Category> getAllCategory() {
+        List<Category> categories = new ArrayList<Category>();
 
         Connection con = JDBCConnection.getJDBCConnection();
 
         String sql = "SELECT * "
-                + "FROM theloai";
+                + "FROM category";
 
         try {
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
-                TheLoai theLoai = new TheLoai();
+                Category category = new Category();
 
-                theLoai.setMaTL(rs.getInt("maTL"));
-                theLoai.setTenTL(rs.getString("tenTL"));
+                category.setIdCaetgory(rs.getInt("idCategory"));
+                category.setNameCategory(rs.getString("nameCategory"));
 
-                theLoais.add(theLoai);
+                categories.add(category);
             }
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(TheLoaiDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CategoryDao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return theLoais;
-    }
-
+        return categories;
+    }  
 }

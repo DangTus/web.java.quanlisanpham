@@ -9,10 +9,14 @@ body {
     box-sizing: border-box;
 }
 
-#myTable {
+.container {
     margin-top: 100px;
-    border: 1px solid #000;
     width: 60%;
+}
+
+.myTable {
+    width: 100%;    
+    border: 1px solid #000;    
     border-collapse: collapse;
 }
 
@@ -32,7 +36,7 @@ body {
     color: red;
 }
 
-.myTd > a {
+.myTd > a {    
     color: #000;
     transition: 0.1s all ease;
 }
@@ -54,4 +58,50 @@ body {
 
 #spTable th {
     background-color: orange;
+}
+
+.addButtonBox {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.addButtonView {
+    display: block;
+    width: 52px;
+    background-color: orange;
+    padding: 10px 30px;
+    color: #000;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+.addTable {
+    width: 100%;        
+    text-align: center;
+    border: 1px solid #000;    
+    border-collapse: collapse;
+}
+
+.addTable th, .addTable td {
+    border: 1px dotted #cecece;
+    border-collapse: collapse;
+}
+
+.addTable th, .addTable td {    
+    padding: 20px 0;
+}
+
+.inputAdd {    
+    width: 70%;
+}
+
+select.inputAdd, select.inputAdd option {
+    cursor: pointer;
+}
+
+.addButton {
+    padding: 10px 20px;
+    background-color: orange;
+    cursor: pointer;
 }

@@ -1,40 +1,68 @@
-<%@page import="java.util.List"%>
-<%@page import="service.TheLoaiService"%>
-<%@page import="model.TheLoai"%>
+<%@page import="service.ProductService"%>
+<%@page import="model.Product"%>
+<%@page import="model.Category"%>
+<%@page import="service.CategoryService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <body>
-    <table id="myTable">
-        <tr>
-            <td class="myTd">
-                <p>Nhóm sản phẩm</p>
-                <%
-                    TheLoaiService theLoaiService = new TheLoaiService();
-                    List<TheLoai> theLoais = theLoaiService.getAllTheLoai();
-                    for (TheLoai theLoai : theLoais) {
-                %>
-                <a href=".?act=view&tl=<% out.print(theLoai.getMaTL()); %>"><% out.print(theLoai.getTenTL()); %></a><br>
-                <%
-                    }
-                %>
-            </td>
-            <td class="myTd">
-                <p>Danh sách sản phẩm</p>
-                <table id="spTable">
-                    <tr>
-                        <th>STT</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Giá SP</th>
-                        <th>Thao Tác</th>
-                    </tr>                   
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                        <td>4</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
+    <div class="container">
+        <table class="myTable">
+            <tr>
+                <td class="myTd">
+                    <p>Nhóm sản phẩm</p>
+                    <%
+                        CategoryService categoryService = new CategoryService();
+                        for (Category category : categoryService.getAllCategory()) {
+                    %>
+                    <a href=".?act=view&category=<% out.print(category.getIdCaetgory()); %>"><% out.print(category.getNameCategory()); %></a><br>
+                    <%
+                        }
+                    %>
+                </td>
+                <td class="myTd">
+                    <p>Danh sách sản phẩm</p>
+                    <table id="spTable">
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá SP</th>
+                            <th>Thao Tác</th>
+                        </tr> 
+                        <%
+                            int category;
+                            ProductService productService = new ProductService();
+
+                            if (request.getParameter("category") == null) {
+                                category = 1;
+                            } else {
+                                category = Integer.parseInt(request.getParameter("category"));
+                            }
+
+                            for (Product product : productService.getProductByCategory(category)) {
+                        %>
+                        <tr>
+                            <td><% out.print(product.getIdProduct()); %></td>
+                            <td><% out.print(product.getNameProduct()); %></td>
+                            <td><% out.print(String.format("%.0f", product.getPrice()) + " $"); %></td>
+                            <td><a href="#" onclick="deleteWarning(<% out.print(product.getIdProduct()); %>)">Xóa</a></td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </table>
+                    <div class="addButtonBox">
+                        <a href=".?act=add" class="addButtonView">Thêm</a>
+                    </div>                
+                </td>            
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function deleteWarning(idProduct) {
+            if(confirm("Bạn có chắc chắn muốn xóa không?")) {
+                location.href = ".?act=delete&product="+idProduct
+            }
+        }
+    </script>
 </body>
